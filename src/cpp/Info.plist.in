@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <!-- Required since iOS 11 for any app whose icon comes from an asset catalog. Its absence is
+         not caught by `altool --validate-app`: the upload reports success, and App Store Connect
+         then rejects the build during processing with ITMS-90713 and emails you about it, so the
+         build simply never appears. Observed 2026-08-27 on the first upload of 0.4.0 (build 6).
+         actool writes CFBundleIcons into the packaged plist but not this key, so it is stated
+         here. Must match XCODE_ATTRIBUTE_ASSETCATALOG_COMPILER_APPICON_NAME in CMakeLists.txt. -->
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+    <!-- Bluetooth is genuinely reachable: SDL's HIDAPI (hid.o) references CBCentralManager, which
+         is how a wireless game controller pairs. Apple requires the string because the API is
+         referenced at all, so it says what the API is actually for here.
+         The camera is NOT declared, deliberately — SDL's camera backend is switched off at build
+         time (SDL_CAMERA=OFF in scripts/build_appstore.sh) so nothing references AVCaptureDevice,
+         and this app cannot capture video. Declaring a purpose for a camera it cannot use would
+         be a worse answer than not having the capability. -->
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>iPSX2 uses Bluetooth to connect wireless game controllers.</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleDisplayName</key>
+    <string>iPSX2</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@IPSX2_VERSION_DISPLAY@</string>
+    <key>CFBundleVersion</key>
+    <string>@IPSX2_BUILD_NUMBER@</string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+
+    <key>UIDeviceFamily</key>
+    <array>
+        <integer>1</integer>
+        <integer>2</integer>
+    </array>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>arm64</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    <key>UILaunchScreen</key>
+    <dict>
+        <key>UIImageName</key>
+        <string>SplashImage</string>
+        <key>UIColorName</key>
+        <string>LaunchBackgroundColor</string>
+    </dict>
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleDefault</string>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneConfigurationName</key>
+                    <string>Default Configuration</string>
+                    <key>UISceneDelegateClassName</key>
+                    <string>PCSX2SceneDelegate</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+    <key>UIFileSharingEnabled</key>
+    <true/>
+    <key>LSSupportsOpeningDocumentsInPlace</key>
+    <true/>
+    <key>CFBundleDocumentTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleTypeName</key>
+            <string>PS2 Disc Image</string>
+            <key>CFBundleTypeRole</key>
+            <string>Viewer</string>
+            <key>LSHandlerRank</key>
+            <string>Alternate</string>
+            <key>LSItemContentTypes</key>
+            <array>
+                <string>public.iso-image</string>
+                <string>public.disk-image</string>
+                <string>public.data</string>
+            </array>
+            <key>CFBundleTypeExtensions</key>
+            <array>
+                <string>iso</string>
+                <string>bin</string>
+                <string>img</string>
+                <string>chd</string>
+                <string>rom</string>
+            </array>
+        </dict>
+    </array>
+</dict>
+</plist>

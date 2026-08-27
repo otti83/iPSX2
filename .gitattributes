@@ -1,0 +1,10 @@
+* text=auto eol=lf
+
+src/cpp/3rdparty/** linguist-vendored
+
+*.png binary
+*.pdf binary
+*.icns binary
+*.ttf binary
+*.otf binary
+*.webp binary

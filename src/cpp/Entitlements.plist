@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Deliberately empty. Xcode still adds application-identifier and team-identifier from the
+  provisioning profile; this file is only for entitlements we ask for on top of those, and this
+  app asks for none.
+
+  Two used to be here and both are gone (2026-08-27):
+
+  com.apple.security.get-task-allow — lets a debugger attach, which is how StikDebug set
+    CS_DEBUGGED and unlocked JIT on a sideloaded build. The App Store rejects any build carrying
+    it, so it could never have shipped; and it buys nothing now, because every component runs on
+    the iv2 interpreter and no code is generated at runtime (see CLAUDE.md §1). Removing it costs
+    the ability to attach a debugger to a device build — take it back temporarily if that is ever
+    needed, but never in a build headed for the App Store.
+
+  com.apple.security.cs.allow-jit — a macOS hardened-runtime key. It has no meaning on iOS; the
+    iOS equivalent is dynamic-codesigning, which the App Store does not grant. It did nothing.
+-->
+<plist version="1.0">
+<dict>
+</dict>
+</plist>
