@@ -1,0 +1,29 @@
+iPSX2 — NOTICE OF MODIFICATION
+================================
+
+iPSX2 is a modified version of PCSX2, via the ARM64/Android port ARMSX2.
+It is not the official PCSX2 or ARMSX2 project. Please report bugs specific
+to iPSX2 here rather than to either upstream project.
+
+Modified by: iPSX2 project contributors
+Modified since: March 2026 (ongoing)
+Upstream: PCSX2 — https://github.com/PCSX2/pcsx2
+Intermediate project: ARMSX2 (ARM64 / Android port)
+License: GPL-3.0-or-later — see LICENSE
+
+The iPSX2 project has:
+- Ported the emulator to iPhone, iPad and Apple silicon, including a SwiftUI
+  application, Objective-C++ bridge, input and rendering integrations.
+- Added an interpreter-based execution path for EE, IOP, VU0 and VU1,
+  designed to operate without runtime-generated machine code.
+- Changed emulator settings, platform integration, and application features.
+- Experimented with offline translation of VU1 microprograms. Generated,
+  game-derived `iv2_t1_*.inc` files are NOT part of this public source tree;
+  the source supports interpreter fallback without them.
+
+This notice documents modifications as required by GPL-3.0 section 5(a).
+Copyright headers and attribution in the upstream source are retained.
+Third-party component licenses are summarized in THIRD-PARTY-NOTICES.md.
+
+PlayStation is a trademark of Sony Interactive Entertainment. The project
+is not affiliated with or endorsed by Sony, PCSX2, or ARMSX2.
